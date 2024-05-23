@@ -37,6 +37,15 @@
             margin-top: 20px;
             gap: 15px;
         }
+
+        .post__comment{
+            display: flex;
+            justify-content:space-between ; 
+            border : 1px solid #ddd ; 
+            padding : 10px ; 
+            margin: 10px 0; 
+        }
+
     </style>
 </head>
 

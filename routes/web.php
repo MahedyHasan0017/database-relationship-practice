@@ -40,6 +40,7 @@ Route::post('/add-contact/store', [ContactController::class, 'contact_store'])->
 
 Route::get('/all-posts', [PostController::class, 'all_posts'])->name('all_posts_view');
 Route::get('/single/post/{id}', [PostController::class, 'single_post'])->name('single_post_view');
+Route::post('/single/post/comment/{id}', [PostController::class, 'add_comment'])->name('single_post_comment_store');
 
 
 
