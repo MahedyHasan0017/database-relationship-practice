@@ -44,7 +44,7 @@ class UserController extends Controller
         }
         else{
             
-            toastr()->success('invalid Credentials');
+            toastr()->warning('invalid Credentials');
             return redirect()->back() ; 
         }
     }
