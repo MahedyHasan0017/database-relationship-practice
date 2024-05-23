@@ -51,7 +51,7 @@
                 <li><a href="{{route('users_view')}}" class="btn btn-primary">Users</a></li>
                 <li><a href="{{route('add_contact_view')}}" class="btn btn-primary">Add Contact</a></li>
                 <li><a href="{{route('all_contact_view')}}" class="btn btn-primary">Contacts</a></li>
-                <li><a href="{{route('all_posts')}}" class="btn btn-primary">All Posts</a></li>
+                <li><a href="{{route('all_posts_view')}}" class="btn btn-primary">All Posts</a></li>
                 <li><a href="{{route('add_post_form')}}" class="btn btn-primary">Add Post</a></li>
                 <li><a href="{{route('all_comments')}}" class="btn btn-primary">All Comments</a></li>
                 <li><a href="{{route('all_products')}}" class="btn btn-primary">All Products</a></li>

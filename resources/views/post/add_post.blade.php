@@ -24,20 +24,35 @@
                             </div>
                         </div>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{ route('add_post_store') }}" method="post">
+                        @csrf
                         <div class="card-body">
                             <div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="post title" />
+                                    <input type="text" class="form-control" name='title' id='title'
+                                        placeholder="post title" />
+
+                                    <div style="display: block ; margin-bottom:15px">
+                                        @error('title')
+                                            <div style="color: red">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="post description" name="" id="" cols="10"
+                                    <textarea class="form-control" placeholder="post description" name="description" id="description" cols="10"
                                         rows="5"></textarea>
+                                    <div style="display: block ; margin-bottom:15px">
+                                        @error('description')
+                                            <div style="color: red">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="" id="" class="form-control"
-                                        placeholder="tag use space to separate" />
+                                    <input type="text" name="tag" id="tag" class="form-control"
+                                        placeholder="tag use space or comma to separate" />
+
                                 </div>
 
                             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
@@ -8,6 +9,7 @@ use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Post;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,21 +38,19 @@ Route::get('/add-contact', [ContactController::class , 'add_contact'])->name('ad
 Route::post('/add-contact/store', [ContactController::class, 'contact_store'])->name('add_contact_store');
 
 
-Route::get('/all-posts', function () {
-
-    // $posts = Post::orderBy('created_at','desc')->get();
-    $posts = Post::orderBy('created_at', 'desc')->get();
-    return view('posts', compact('posts'));
-})->name('all_posts');
+Route::get('/all-posts', [PostController::class, 'all_posts'])->name('all_posts_view');
+Route::get('/single/post/{id}', [PostController::class, 'single_post'])->name('single_post_view');
 
 
-Route::get('/add-post/form', function () {
-    return view('add_post');
-})->name('add_post_form');
 
-Route::post('/add-post/store', function () {
-    return view('register');
-})->name('add_post_store');
+Route::group(['prefix' => 'add-post', 'middleware' => 'admin'], function () {
+    Route::get('form',[PostController::class ,'add_post'])->name('add_post_form');
+    Route::post('store', [PostController::class, 'add_post_store'])->name('add_post_store');
+});
+
+
+
+
 
 Route::get('/all-comments', function () {
     $comments = Comment::all();

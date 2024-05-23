@@ -12,8 +12,20 @@ class Post extends Model
 
     public $timestamps = true;
 
+
+    protected $fillable = [
+        'user_id' , 
+        'title' , 
+        'desc'
+    ];
+
+
     public function comment(){
         return $this->HasMany(Comment::class) ; 
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class) ; 
     }
 
 }
