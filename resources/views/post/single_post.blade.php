@@ -22,6 +22,9 @@
                             <div>post description</div>
                             {{ $post->desc }}
                         </div>
+                        <div>
+                            tags 
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div>

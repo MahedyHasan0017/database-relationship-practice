@@ -27,7 +27,22 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {{ $post->desc }}
+                            <div>
+                                {{ $post->desc }}
+                            </div>
+                            <div>
+                                <div>
+                                    tags 
+                                </div>
+                                <div>
+                                    @foreach ($post->tag as $tag)
+                                        <span>
+                                            <a href="{{ route('all_posts_with_tag_view',['tag' => $tag->tag_name]) }}">{{ $tag->tag_name }}</a>
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="card-footer">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,14 @@ class PostController extends Controller
     }
 
 
+    public function all_posts_with_tag(Request $request , $tag){
+
+        $posts = Tag::where('tag_name',$tag)->get() ; 
+
+        return view('post.post_list_with_tag',compact('posts'));
+    }
+
+
 
 
     public function add_post()
@@ -59,6 +68,15 @@ class PostController extends Controller
     }
     public function add_post_store(PostRequest $request)
     {
+
+        // dd($request->all()) ; 
+        $str = $request->tag ; 
+
+        // $tag = explode(" ", trim($str));
+
+        $tags = preg_split("/[\s,]+/", $str);
+
+       
         $user = Auth::guard('admin')->user();
         $post = Post::create([
             "user_id" => $user->id,
@@ -66,6 +84,16 @@ class PostController extends Controller
             'desc' => $request->description
         ]);
         if ($post) {
+
+
+            for($i = 0 ; $i < count($tags) ; $i++){
+                $tag = Tag::create([
+                    'post_id' => $post->id , 
+                    'tag_name' => $tags[$i] ,
+                ]);
+                $tag->save() ; 
+            }
+            
             toastr()->success('Post Added Successfully');
             return redirect()->route('all_posts_view');
         } else {
